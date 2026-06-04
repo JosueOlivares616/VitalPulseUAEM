@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VitalPulse — Salud & Bienestar</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --green-deep: #1a3a2f;
+      --green-mid: #2d6a4f;
+      --green-soft: #52b788;
+      --green-light: #95d5b2;
+      --cream: #f8f4ed;
+      --sand: #e9e0d0;
+      --gold: #c9a84c;
+      --text-dark: #1a1a1a;
+      --text-mid: #3d3d3d;
+      --text-soft: #6b6b6b;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ====== NAVBAR ====== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(248, 244, 237, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(149, 213, 178, 0.3);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--green-deep);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--green-soft);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
+    }
+
+    nav ul a:hover {
+      color: var(--green-soft);
+    }
+
+    /* ====== HERO ====== */
+    .hero {
+      min-height: 100vh;
+      background: var(--green-deep);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(82, 183, 136, 0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: 5%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-text {
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(82, 183, 136, 0.2);
+      color: var(--green-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(82, 183, 136, 0.3);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--green-soft);
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--green-soft);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(82, 183, 136, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .hero-cards {
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-left: 3rem;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+
+    .info-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(6px);
+    }
+
+    .info-card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .info-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .info-card p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ====== MISIÓN VISIÓN ====== */
+    .mv-section {
+      padding: 6rem 4rem;
+      background: var(--white);
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--green-soft);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      color: var(--green-deep);
+      margin-bottom: 4rem;
+      line-height: 1.2;
+    }
+
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .mv-card {
+      border-radius: 20px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mv-card.mision {
+      background: var(--green-deep);
+      color: var(--white);
+    }
+
+    .mv-card.vision {
+      background: var(--cream);
+      border: 2px solid var(--sand);
+    }
+
+    .mv-card-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+
+    .mision .mv-card-tag {
+      background: rgba(82, 183, 136, 0.25);
+      color: var(--green-light);
+    }
+
+    .vision .mv-card-tag {
+      background: rgba(82, 183, 136, 0.15);
+      color: var(--green-mid);
+    }
+
+    .mv-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .mision h3 {
+      color: var(--white);
+    }
+
+    .vision h3 {
+      color: var(--green-deep);
+    }
+
+    .mv-card p {
+      line-height: 1.9;
+      font-size: 0.98rem;
+    }
+
+    .mision p {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .vision p {
+      color: var(--text-soft);
+    }
+
+    /* ====== SECTION WRAPPER ====== */
+    .section-wrapper {
+      padding: 6rem 4rem;
+    }
+
+    .section-wrapper.alt {
+      background: var(--cream);
+    }
+
+    .section-wrapper.dark {
+      background: var(--green-deep);
+    }
+
+    /* ====== DEPORTES ====== */
+    .sports-tabs {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .sport-tab {
+      background: var(--white);
+      border: 2px solid var(--sand);
+      color: var(--text-mid);
+      padding: 0.7rem 1.6rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sport-tab:hover {
+      border-color: var(--green-soft);
+      color: var(--green-mid);
+      transform: translateY(-2px);
+    }
+
+    .sport-tab.active {
+      background: var(--green-deep);
+      border-color: var(--green-deep);
+      color: var(--white);
+      box-shadow: 0 6px 20px rgba(26, 58, 47, 0.3);
+    }
+
+    .sport-content {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .sport-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .sport-hero {
+      background: var(--green-deep);
+      border-radius: 24px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .sport-hero-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .sport-hero-info p {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.8;
+      font-size: 0.97rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .benefits-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .benefits-list li {
+      background: rgba(82, 183, 136, 0.2);
+      color: var(--green-light);
+      border: 1px solid rgba(82, 183, 136, 0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .sport-emoji {
+      font-size: 8rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.85;
+    }
+
+    .clubs-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--green-deep);
+      margin-bottom: 1.5rem;
+      padding-left: 0.3rem;
+    }
+
+    .clubs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .club-card {
+      background: var(--white);
+      border: 1px solid var(--sand);
+      border-radius: 16px;
+      padding: 1.4rem;
+      transition: all 0.3s;
+    }
+
+    .club-card:hover {
+      border-color: var(--green-soft);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .club-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+
+    .rating-num {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+    }
+
+    .club-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 0.8rem;
+    }
+
+    .club-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .club-info-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .club-info-row span:first-child {
+      flex-shrink: 0;
+    }
+
+    /* ====== MÉDICOS ====== */
+    /* ====== TABLAS INTERACTIVAS (MÉDICOS Y DEPORTES) ====== */
+    .medicos-filter-container,
+    .sports-filter-container {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    .search-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .search-wrapper input {
+      width: 100%;
+      padding: 1rem 1.5rem 1rem 3rem;
+      border: 2px solid var(--sand);
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      background: var(--white);
+      color: var(--text-dark);
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    }
+
+    .search-wrapper input:focus {
+      border-color: var(--green-soft);
+      box-shadow: 0 8px 25px rgba(82, 183, 136, 0.15);
+    }
+
+    .search-wrapper::before {
+      content: '🔍';
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      opacity: 0.6;
+    }
+
+    .medicos-table-container,
+    .sports-table-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 24px;
+      border: 1px solid var(--sand);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+      overflow-x: auto;
+      transition: all 0.3s ease;
+    }
+
+    .medicos-table,
+    .sports-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .medicos-table th,
+    .sports-table th {
+      background: var(--green-deep);
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 1.2rem 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .medicos-table td,
+    .sports-table td {
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid rgba(149, 213, 178, 0.15);
+      color: var(--text-mid);
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s ease;
+    }
+
+    .medicos-table tr:last-child td,
+    .sports-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .medicos-table tr,
+    .sports-table tr {
+      transition: background-color 0.2s ease;
+    }
+
+    .medicos-table tr:hover,
+    .sports-table tr:hover {
+      background-color: rgba(82, 183, 136, 0.05);
+    }
+
+    .badge-specialty,
+    .badge-sport {
+      display: inline-block;
+      background: rgba(82, 183, 136, 0.12);
+      color: var(--green-mid);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(82, 183, 136, 0.2);
+    }
+
+    .col-specialist,
+    .col-club {
+      font-weight: 600;
+      color: var(--green-deep);
+      font-size: 1rem;
+    }
+
+    .col-location,
+    .col-contact {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .location-pin,
+    .contact-icon {
+      color: var(--green-soft);
+      font-size: 1.1rem;
+    }
+
+    .no-results {
+      padding: 3rem;
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+
+    @media (max-width: 900px) {
+      .medicos-table-container,
+      .sports-table-container {
+        border-radius: 16px;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+      }
+      
+      .medicos-table, .medicos-table thead, .medicos-table tbody, .medicos-table th, .medicos-table td, .medicos-table tr,
+      .sports-table, .sports-table thead, .sports-table tbody, .sports-table th, .sports-table td, .sports-table tr {
+        display: block !important;
+      }
+
+      .medicos-table thead,
+      .sports-table thead {
+        display: none !important;
+      }
+
+      .medicos-table tr,
+      .sports-table tr {
+        background: var(--white);
+        border: 1px solid var(--sand);
+        border-radius: 16px;
+        margin-bottom: 1rem;
+        padding: 1.2rem;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.02);
+      }
+
+      .medicos-table tr:hover,
+      .sports-table tr:hover {
+        background-color: var(--white);
+      }
+
+      .medicos-table td,
+      .sports-table td {
+        padding: 0.5rem 0;
+        border-bottom: none;
+        display: block !important;
+      }
+
+      .medicos-table td::before,
+      .sports-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--text-soft);
+        display: block;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.2rem;
+      }
+    }
+
+    /* ====== OPINIONES ====== */
+    .opiniones-section {
+      background: var(--green-deep);
+      padding: 6rem 4rem;
+    }
+
+    .opiniones-section .section-title {
+      color: var(--white);
+    }
+
+    .opiniones-section .section-label {
+      color: var(--green-light);
+    }
+
+    .opiniones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .opinion-card {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s;
+      backdrop-filter: blur(8px);
+    }
+
+    .opinion-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .opinion-card:first-child {
+      grid-column: span 2;
+      background: rgba(82, 183, 136, 0.15);
+      border-color: rgba(82, 183, 136, 0.3);
+    }
+
+    .opinion-stars {
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .opinion-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .opinion-card:first-child .opinion-text {
+      font-size: 1.15rem;
+    }
+
+    .opinion-author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-soft), var(--green-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--white);
+    }
+
+    .author-detail {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .opinion-badge {
+      display: inline-block;
+      background: var(--green-soft);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      margin-top: 0.3rem;
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      background: #111a17;
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      padding: 2rem 4rem;
+      font-size: 0.85rem;
+    }
+
+    footer strong {
+      color: var(--green-soft);
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      .hero-cards {
+        padding-left: 0;
+      }
+
+      .mv-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sport-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .sport-emoji {
+        font-size: 5rem;
+      }
+
+      .section-wrapper,
+      .opiniones-section,
+      .mv-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .opinion-card:first-child {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">Vital<span>Pulse</span></div>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#deportes">Deportes</a></li>
+      <li><a href="#medicos">Médicos</a></li>
+      <li><a href="#opiniones">Opiniones</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-text">
+      <div class="hero-eyebrow">✦ Tu camino al bienestar</div>
+      <h1>Vive con <em>energía,</em><br>muévete con <em>propósito</em></h1>
+      <p>VitalPulse es tu plataforma integral de salud y bienestar. Encuentra los mejores deportes, clubes,
+        especialistas médicos y la comunidad que necesitas para transformar tu vida.</p>
+      <div class="hero-cta">
+        <a href="#deportes" class="btn-primary">Explorar deportes</a>
+        <a href="#medicos" class="btn-outline">Ver especialistas</a>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="info-card">
+        <div class="info-card-icon"></div>
+        <h3>Deportes para todos</h3>
+        <p>Descubre los mejores deportes y clubes cerca de ti, adaptados a tu estilo de vida y objetivos.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"></div>
+        <h3>Especialistas de confianza</h3>
+        <p>Conecta con médicos certificados: nutriólogos, fisioterapeutas, cardiólogos y más.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"></div>
+        <h3>Comunidad activa</h3>
+        <p>Únete a miles de personas comprometidas con su salud. Comparte, aprende y avanza junto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN Y VISIÓN -->
+  <section class="mv-section">
+    <p class="section-label">Nuestra identidad</p>
+    <h2 class="section-title">¿Quiénes somos y<br>hacia dónde vamos?</h2>
+    <div class="mv-grid">
+      <div class="mv-card mision">
+        <span class="mv-card-tag">Misión</span>
+        <h3>Nuestra Misión</h3>
+        <p>Empoderar a cada persona para que tome el control de su salud y bienestar, brindando acceso a información
+          confiable, comunidades activas y profesionales de salud certificados. Creemos que el bienestar integral
+          —físico, mental y emocional— es un derecho, no un privilegio. Por eso, ponemos a tu alcance las herramientas,
+          el conocimiento y la motivación que necesitas para vivir mejor, cada día.</p>
+      </div>
+      <div class="mv-card vision">
+        <span class="mv-card-tag">Visión</span>
+        <h3>Nuestra Visión</h3>
+        <p>Ser la plataforma líder de salud y bienestar en Latinoamérica, reconocida por transformar positivamente la
+          calidad de vida de millones de personas. Aspiramos a construir una sociedad más saludable y activa, donde el
+          deporte, la nutrición adecuada y el cuidado médico preventivo sean parte del día a día de cada familia,
+          comunidad y generación.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 1: DEPORTES -->
+  <section class="section-wrapper alt" id="deportes">
+    <p class="section-label">Sección 01</p>
+    <h2 class="section-title">Equipos & Clubes Deportivos</h2>
+
+    <!-- Tabs de filtrado -->
+    <div class="sports-tabs">
+      <button class="sport-tab active" data-category="todos" onclick="filterSports('todos')">Todos</button>
+      <button class="sport-tab" data-category="atletismo" onclick="filterSports('atletismo')">Atletismo</button>
+      <button class="sport-tab" data-category="básquetbol" onclick="filterSports('básquetbol')">Básquetbol</button>
+      <button class="sport-tab" data-category="béisbol" onclick="filterSports('béisbol')">Béisbol</button>
+      <button class="sport-tab" data-category="fútbol" onclick="filterSports('fútbol')">Fútbol</button>
+      <button class="sport-tab" data-category="fútbol / atletismo" onclick="filterSports('fútbol / atletismo')">Fútbol / Atletismo</button>
+      <button class="sport-tab" data-category="fútbol americano" onclick="filterSports('fútbol americano')">Fútbol Americano</button>
+      <button class="sport-tab" data-category="natación" onclick="filterSports('natación')">Natación</button>
+      <button class="sport-tab" data-category="tocho bandera" onclick="filterSports('tocho bandera')">Tocho Bandera</button>
+    </div>
+
+    <!-- Buscador -->
+    <div class="sports-filter-container">
+      <div class="search-wrapper">
+        <input type="text" id="sports-search" placeholder="Buscar por equipo, club, deporte o ubicación..." oninput="filterSports()">
+      </div>
+    </div>
+
+    <!-- Contenedor de la Tabla -->
+    <div class="sports-table-container">
+      <table class="sports-table" id="sports-table" data-active-category="todos">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 18%;">Deporte</th>
+            <th scope="col" style="width: 25%;">Equipo / Club</th>
+            <th scope="col" style="width: 27%;">Ubicación</th>
+            <th scope="col" style="width: 20%;">Contacto</th>
+            <th scope="col" style="width: 10%;">Calificación</th>
+          </tr>
+        </thead>
+        <tbody id="sports-table-body">
+          <tr data-sport="atletismo">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Atletismo</span></td>
+            <td class="col-club" data-label="Equipo / Club">Halcones de Toluca</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Ciudad Deportiva Zinacantepec</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Facebook (Halcones Atletismo Toluca)</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.5/5</td>
+          </tr>
+          <tr data-sport="atletismo">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Atletismo</span></td>
+            <td class="col-club" data-label="Equipo / Club">Club de Atletismo Zina</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Ciudad Deportiva Zinacantepec</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Administración de la Ciudad Deportiva</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.3/5</td>
+          </tr>
+          <tr data-sport="atletismo">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Atletismo</span></td>
+            <td class="col-club" data-label="Equipo / Club">Club de Atletismo Garzas</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Toluca Centro</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Facebook (Club Garzas)</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.2/5</td>
+          </tr>
+          <tr data-sport="básquetbol">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Básquetbol</span></td>
+            <td class="col-club" data-label="Equipo / Club">Lobos Toluca (Básquetbol)</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Gimnasio Municipal Toluca</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Redes sociales (Lobos Toluca)</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.3/5</td>
+          </tr>
+          <tr data-sport="básquetbol">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Básquetbol</span></td>
+            <td class="col-club" data-label="Equipo / Club">Dragones Metepec</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Unidad Deportiva Martín Alarcón</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Ayuntamiento de Metepec (Deportes)</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.2/5</td>
+          </tr>
+          <tr data-sport="básquetbol">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Básquetbol</span></td>
+            <td class="col-club" data-label="Equipo / Club">Panteras Toluca</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Gimnasio Auditorio Gral. José María Arteaga</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Redes sociales</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.1/5</td>
+          </tr>
+          <tr data-sport="béisbol">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Béisbol</span></td>
+            <td class="col-club" data-label="Equipo / Club">Club de Béisbol Diablos de Toluca (Aficionado)</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Campo deportivo "La Hortaliza", Toluca</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> A través de la Liga Municipal de Béisbol</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.2/5</td>
+          </tr>
+          <tr data-sport="béisbol">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Béisbol</span></td>
+            <td class="col-club" data-label="Equipo / Club">Toros Toluca (Béisbol)</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Campos de la zona metropolitana</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Liga de Béisbol Toluca</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.0/5</td>
+          </tr>
+          <tr data-sport="fútbol">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Fútbol</span></td>
+            <td class="col-club" data-label="Equipo / Club">Deportivo Toluca (Escuelas Oficiales)</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Metepec (Instalaciones de Fuerzas Básicas)</td>
+            <td class="col-contact" data-label="Contacto"><span>📞</span> 722 214 5709 / <a href="https://tolucafc.com" target="_blank" style="color: var(--green-mid); font-weight: 500;">tolucafc.com</a></td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★★</span> 4.8/5</td>
+          </tr>
+          <tr data-sport="fútbol">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Fútbol</span></td>
+            <td class="col-club" data-label="Equipo / Club">Academia de Fútbol Atlas Toluca</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Metepec</td>
+            <td class="col-contact" data-label="Contacto"><span>🌐</span> <a href="https://atlasfc.com.mx" target="_blank" style="color: var(--green-mid); font-weight: 500;">atlasfc.com.mx</a></td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.4/5</td>
+          </tr>
+          <tr data-sport="fútbol / atletismo">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Fútbol / Atletismo</span></td>
+            <td class="col-club" data-label="Equipo / Club">Potros UAEMex (Representante)</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Estadio Universitario Alberto "Chivo" Córdoba</td>
+            <td class="col-contact" data-label="Contacto"><span>🌐</span> <a href="https://deporte.uaemex.mx" target="_blank" style="color: var(--green-mid); font-weight: 500;">deporte.uaemex.mx</a></td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★★</span> 4.7/5</td>
+          </tr>
+          <tr data-sport="fútbol americano">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Fútbol Americano</span></td>
+            <td class="col-club" data-label="Equipo / Club">Campus ITESM Borregos Toluca</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Zinacantepec</td>
+            <td class="col-contact" data-label="Contacto"><span>🌐</span> <a href="https://toluca.tec.mx" target="_blank" style="color: var(--green-mid); font-weight: 500;">toluca.tec.mx</a></td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★★</span> 4.9/5</td>
+          </tr>
+          <tr data-sport="fútbol americano">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Fútbol Americano</span></td>
+            <td class="col-club" data-label="Equipo / Club">Búhos Toluca</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Unidad Deportiva San Antonio Buenavista</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Facebook (Búhos Fútbol)</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.5/5</td>
+          </tr>
+          <tr data-sport="fútbol americano">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Fútbol Americano</span></td>
+            <td class="col-club" data-label="Equipo / Club">Búfalos Toluca (Fútbol Americano)</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Campos deportivos de Toluca</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Facebook (Búfalos Fútbol)</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.4/5</td>
+          </tr>
+          <tr data-sport="natación">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Natación</span></td>
+            <td class="col-club" data-label="Equipo / Club">Tiburones Toluca (Competitiva)</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Alberca Olímpica Ciudad Deportiva</td>
+            <td class="col-contact" data-label="Contacto"><span>📞</span> 722 272 5815</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.4/5</td>
+          </tr>
+          <tr data-sport="natación">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Natación</span></td>
+            <td class="col-club" data-label="Equipo / Club">Barracudas Natación</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Metepec</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Facebook (Barracudas Natación)</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.5/5</td>
+          </tr>
+          <tr data-sport="natación">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Natación</span></td>
+            <td class="col-club" data-label="Equipo / Club">Actividades acuáticas en Toluca</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Toluca</td>
+            <td class="col-contact" data-label="Contacto"><span>📞</span> 722 555 1234</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.3/5</td>
+          </tr>
+          <tr data-sport="tocho bandera">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Tocho Bandera</span></td>
+            <td class="col-club" data-label="Equipo / Club">Fútbol americano de bandera de los Titanes</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Metepec</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Facebook (Fútbol Bandera Titanes)</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.6/5</td>
+          </tr>
+          <tr data-sport="tocho bandera">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Tocho Bandera</span></td>
+            <td class="col-club" data-label="Equipo / Club">Bandera de los espartanos</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Toluca (Campos privados)</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Facebook (Bandera Espartanas Toluca)</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★★</span> 4.7/5</td>
+          </tr>
+          <tr data-sport="tocho bandera">
+            <td class="col-sport" data-label="Deporte"><span class="badge-sport">Tocho Bandera</span></td>
+            <td class="col-club" data-label="Equipo / Club">Tigres de Toluca (Tocho)</td>
+            <td class="col-location" data-label="Ubicación"><span>📍</span> Toluca</td>
+            <td class="col-contact" data-label="Contacto"><span>📱</span> Liga de Tocho Toluca</td>
+            <td class="col-rating" data-label="Calificación"><span class="stars">★★★★☆</span> 4.0/5</td>
+          </tr>
+          <tr id="no-sports-results-row" style="display: none;">
+            <td colspan="5" class="no-results">No se encontraron equipos o clubes que coincidan con la búsqueda.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: MÉDICOS -->
+  <section class="section-wrapper" id="medicos">
+    <p class="section-label">Sección 02</p>
+    <h2 class="section-title">Especialistas en Salud</h2>
+
+    <!-- Tabs de filtrado -->
+    <div class="sports-tabs">
+      <button class="sport-tab active" data-category="todos" onclick="filterMedicos('todos')">Todos</button>
+      <button class="sport-tab" data-category="cardiología" onclick="filterMedicos('cardiología')">Cardiología</button>
+      <button class="sport-tab" data-category="cirugía" onclick="filterMedicos('cirugía')">Cirugía</button>
+      <button class="sport-tab" data-category="fisioterapia" onclick="filterMedicos('fisioterapia')">Fisioterapia</button>
+      <button class="sport-tab" data-category="ginecología" onclick="filterMedicos('ginecología')">Ginecología</button>
+      <button class="sport-tab" data-category="medicina general" onclick="filterMedicos('medicina general')">Medicina General</button>
+      <button class="sport-tab" data-category="medicina interna" onclick="filterMedicos('medicina interna')">Medicina Interna</button>
+      <button class="sport-tab" data-category="neurología" onclick="filterMedicos('neurología')">Neurología</button>
+      <button class="sport-tab" data-category="otorrinolaringología" onclick="filterMedicos('otorrinolaringología')">Otorrinolaringología</button>
+      <button class="sport-tab" data-category="traumatología" onclick="filterMedicos('traumatología')">Traumatología</button>
+    </div>
+
+    <!-- Buscador -->
+    <div class="medicos-filter-container">
+      <div class="search-wrapper">
+        <input type="text" id="medicos-search" placeholder="Buscar por nombre, especialidad o ubicación..." oninput="filterMedicos()">
+      </div>
+    </div>
+
+    <!-- Contenedor de la Tabla -->
+    <div class="medicos-table-container">
+      <table class="medicos-table" id="medicos-table" data-active-category="todos">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 25%;">Profesión</th>
+            <th scope="col" style="width: 40%;">Especialista</th>
+            <th scope="col" style="width: 35%;">Ubicación</th>
+          </tr>
+        </thead>
+        <tbody id="medicos-table-body">
+          <tr data-profession="cardiología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Cardiología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Héctor Lara Aguilar</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Sanatorio Venecia, Toluca</td>
+          </tr>
+          <tr data-profession="cardiología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Cardiología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Carlos Augusto Contreras</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Ciudad Satélite, Naucalpan</td>
+          </tr>
+          <tr data-profession="cardiología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Cardiología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Alberto Carlos Heredia</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Hospital Azura, Satélite</td>
+          </tr>
+          <tr data-profession="cardiología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Cardiología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Moisés Emilio Santos</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Posada Hospital San Ángel</td>
+          </tr>
+          <tr data-profession="cirugía">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Cirugía</span></td>
+            <td class="col-specialist" data-label="Especialista">Dra. Diana Maritza Valladares</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Torre Médica Toluca</td>
+          </tr>
+          <tr data-profession="cirugía">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Cirugía</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Jaime Serrano Manjarrez</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Hospital Médica MIA, Lerma</td>
+          </tr>
+          <tr data-profession="fisioterapia">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Fisioterapia</span></td>
+            <td class="col-specialist" data-label="Especialista">LFT. Gastón Pumarejo</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Atizapán de Zaragoza</td>
+          </tr>
+          <tr data-profession="fisioterapia">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Fisioterapia</span></td>
+            <td class="col-specialist" data-label="Especialista">LFT. Dulce Regina Rodríguez</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Ciudad Satélite</td>
+          </tr>
+          <tr data-profession="fisioterapia">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Fisioterapia</span></td>
+            <td class="col-specialist" data-label="Especialista">LFT. María Carmen Durán</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Zona Bosques</td>
+          </tr>
+          <tr data-profession="fisioterapia">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Fisioterapia</span></td>
+            <td class="col-specialist" data-label="Especialista">LFT. Mariana Castro Sordo</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Bosques de las Lomas</td>
+          </tr>
+          <tr data-profession="fisioterapia">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Fisioterapia</span></td>
+            <td class="col-specialist" data-label="Especialista">LFT. Vania Aketzali Márquez</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Cuauhtémoc</td>
+          </tr>
+          <tr data-profession="ginecología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Ginecología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Rodolfo López Bernal</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Sanatorio Toluca</td>
+          </tr>
+          <tr data-profession="medicina general">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Medicina General</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Armando Villegas</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Toluca Centro</td>
+          </tr>
+          <tr data-profession="medicina interna">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Medicina Interna</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Jorge Rubio Gutiérrez</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Sanatorio Santa Cruz, Toluca</td>
+          </tr>
+          <tr data-profession="medicina interna">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Medicina Interna</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Pedro Cornejo Santiago</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Cuautitlán Izcalli</td>
+          </tr>
+          <tr data-profession="neurología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Neurología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Alfredo López Parra</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Centro Médico de Toluca, Toluca de Lerdo</td>
+          </tr>
+          <tr data-profession="neurología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Neurología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Josué Lozano Tamez</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Sanatorio Toluca, Av. Miguel Hidalgo, Toluca</td>
+          </tr>
+          <tr data-profession="otorrinolaringología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Otorrinolaringología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Francisco Franco González</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Paseo Colón, Toluca</td>
+          </tr>
+          <tr data-profession="traumatología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Traumatología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Luis Arturo Lara González</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Sanatorio Venecia, Toluca</td>
+          </tr>
+          <tr data-profession="traumatología">
+            <td class="col-profession" data-label="Profesión"><span class="badge-specialty">Traumatología</span></td>
+            <td class="col-specialist" data-label="Especialista">Dr. Alejandro Fabela Maldonado</td>
+            <td class="col-location" data-label="Ubicación"><span class="location-pin">📍</span> Sanatorio Venecia, Toluca</td>
+          </tr>
+          <tr id="no-results-row" style="display: none;">
+            <td colspan="3" class="no-results">No se encontraron especialistas que coincidan con la búsqueda.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- SECCIÓN 3: OPINIONES -->
+  <section class="opiniones-section" id="opiniones">
+    <p class="section-label">Sección 03</p>
+    <h2 class="section-title">Lo que dice nuestra<br><em style="color: var(--green-light);">comunidad</em></h2>
+
+    <div class="opiniones-grid">
+
+      <div class="opinion-card">
+        <div class="opinion-stars">★★★★★</div>
+        <p class="opinion-text">"VitalPulse cambió completamente mi relación con el deporte. Empecé buscando un club de
+          natación y terminé transformando mi estilo de vida por completo. La información sobre beneficios, los clubes y
+          los médicos recomendados son increíblemente precisos. Llevo 8 meses sintiéndome mejor que nunca."</p>
+        <div class="opinion-author">
+          <div class="author-avatar">MR</div>
+          <div>
+            <div class="author-name">Mariana Rodríguez</div>
+            <div class="author-detail">Nadadora amateur · CDMX</div>
+            <span class="opinion-badge">⭐ Miembro destacada</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-stars">★★★★★</div>
+        <p class="opinion-text">"Encontré a mi nutriólogo a través de VitalPulse y en 3 meses bajé 12 kilos de manera
+          saludable. La plataforma es muy fácil de usar y la información es confiable."</p>
+        <div class="opinion-author">
+          <div class="author-avatar">JL</div>
+          <div>
+            <div class="author-name">Jorge López</div>
+            <div class="author-detail">Paciente nutrición · Monterrey</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-stars">★★★★★</div>
+        <p class="opinion-text">"Como corredor, necesitaba encontrar un club serio. En VitalPulse encontré Pacers CDMX y
+          ha sido de las mejores decisiones de mi vida. ¡Ya completé mi primer medio maratón!"</p>
+        <div class="opinion-author">
+          <div class="author-avatar">AP</div>
+          <div>
+            <div class="author-name">Alejandro Pérez</div>
+            <div class="author-detail">Runner · CDMX</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-stars">★★★★☆</div>
+        <p class="opinion-text">"Después de mi lesión de rodilla, la fisioterapeuta recomendada en la plataforma fue
+          fundamental en mi recuperación. Volví a jugar fútbol en 4 meses. Muy recomendada esta página."</p>
+        <div class="opinion-author">
+          <div class="author-avatar">CS</div>
+          <div>
+            <div class="author-name">Carlos Sánchez</div>
+            <div class="author-detail">Futbolista · Guadalajara</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-stars">★★★★★</div>
+        <p class="opinion-text">"La sección de ciclismo me ayudó a encontrar el club perfecto. Ahora salgo a rodar cada
+          fin de semana con mi grupo. El cardiólogo que contacté me dio un excelente plan para entrenar con seguridad."
+        </p>
+        <div class="opinion-author">
+          <div class="author-avatar">PG</div>
+          <div>
+            <div class="author-name">Patricia González</div>
+            <div class="author-detail">Ciclista · CDMX</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="opinion-card">
+        <div class="opinion-stars">★★★★★</div>
+        <p class="opinion-text">"Nunca había practicado tenis y gracias a VitalPulse encontré una academia con
+          instructores increíbles. En 6 meses ya juego partidos competitivos. ¡Es nunca tarde para empezar!"</p>
+        <div class="opinion-author">
+          <div class="author-avatar">RM</div>
+          <div>
+            <div class="author-name">Rebeca Morales</div>
+            <div class="author-detail">Tenista · Puebla</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <strong>VitalPulse</strong> — Salud & Bienestar · Todos los derechos reservados · Hecho para tu salud</p>
+  </footer>
+
+  <script>
+    function filterSports(category) {
+      const searchInput = document.getElementById('sports-search');
+      const query = searchInput.value.toLowerCase().trim();
+      
+      if (category !== undefined) {
+        const tabs = document.querySelectorAll('#deportes .sport-tab');
+        tabs.forEach(tab => {
+          if (tab.getAttribute('data-category') === category) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        });
+        document.getElementById('sports-table').setAttribute('data-active-category', category);
+      }
+      
+      const activeCategory = document.getElementById('sports-table').getAttribute('data-active-category') || 'todos';
+      const rows = document.querySelectorAll('#sports-table-body tr');
+      let visibleCount = 0;
+      
+      rows.forEach(row => {
+        if (row.id === 'no-sports-results-row') return;
+        
+        const sport = row.getAttribute('data-sport').toLowerCase();
+        const club = row.querySelector('.col-club').textContent.toLowerCase();
+        const location = row.querySelector('.col-location').textContent.toLowerCase();
+        const contact = row.querySelector('.col-contact').textContent.toLowerCase();
+        
+        const matchesCategory = (activeCategory === 'todos' || sport === activeCategory);
+        const matchesSearch = (club.includes(query) || location.includes(query) || sport.includes(query) || contact.includes(query));
+        
+        if (matchesCategory && matchesSearch) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      
+      const noResultsRow = document.getElementById('no-sports-results-row');
+      if (visibleCount === 0) {
+        noResultsRow.style.display = '';
+      } else {
+        noResultsRow.style.display = 'none';
+      }
+    }
+
+    function filterMedicos(category) {
+      const searchInput = document.getElementById('medicos-search');
+      const query = searchInput.value.toLowerCase().trim();
+      
+      if (category !== undefined) {
+        const tabs = document.querySelectorAll('#medicos .sport-tab');
+        tabs.forEach(tab => {
+          if (tab.getAttribute('data-category') === category) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        });
+        document.getElementById('medicos-table').setAttribute('data-active-category', category);
+      }
+      
+      const activeCategory = document.getElementById('medicos-table').getAttribute('data-active-category') || 'todos';
+      const rows = document.querySelectorAll('#medicos-table-body tr');
+      let visibleCount = 0;
+      
+      rows.forEach(row => {
+        if (row.id === 'no-results-row') return;
+        
+        const profession = row.getAttribute('data-profession').toLowerCase();
+        const specialist = row.querySelector('.col-specialist').textContent.toLowerCase();
+        const location = row.querySelector('.col-location').textContent.toLowerCase();
+        
+        const matchesCategory = (activeCategory === 'todos' || profession === activeCategory);
+        const matchesSearch = (specialist.includes(query) || location.includes(query) || profession.includes(query));
+        
+        if (matchesCategory && matchesSearch) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      
+      const noResultsRow = document.getElementById('no-results-row');
+      if (visibleCount === 0) {
+        noResultsRow.style.display = '';
+      } else {
+        noResultsRow.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+
+</html>
